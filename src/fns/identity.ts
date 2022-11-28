@@ -1,0 +1,1 @@
+export const identity = <X=unknown>(x: X) => x
