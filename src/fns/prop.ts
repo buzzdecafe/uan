@@ -1,5 +1,5 @@
-import { isObject } from "./guards"
-import { ObjectProperty } from "./t"
+import { isObject } from "../internal/_guards"
+import { ObjectProperty } from "../internal/t"
 
 
 export type WithPropTo<T> = { [k: ObjectProperty ]: T }

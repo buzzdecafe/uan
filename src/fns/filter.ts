@@ -1,5 +1,5 @@
-import { isObject, isFunction } from "./guards"
-import { Predicate, PredicateIndexed } from "./t"
+import { isObject, isFunction } from "../internal/_guards"
+import { Predicate, PredicateIndexed } from "../internal/t"
 
 
 export type FilteringObject<A> = { filter: (p: Predicate<A>) => FilteringObject<A> }

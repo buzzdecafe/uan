@@ -1,5 +1,5 @@
-import { isFunction } from "./guards";
-import { Func } from "./t";
+import { isFunction } from "../internal/_guards";
+import { Func } from "../internal/t";
 
 
 export const compose = <B, C>(f: Func<B, C>) => <A>(g: Func<A, B>) => (x: A) => f(g(x))

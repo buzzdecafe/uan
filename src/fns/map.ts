@@ -1,5 +1,5 @@
-import { isObject, isFunction } from "./guards"
-import { Func, FuncIndexed } from "./t"
+import { isObject, isFunction } from "../internal/_guards"
+import { Func, FuncIndexed } from "../internal/t"
 
 
 export type MappingObject<A> = { map: <B>(f: Func<A, B>) => MappingObject<B> }

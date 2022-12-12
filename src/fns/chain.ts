@@ -1,14 +1,15 @@
-import { isFunction, isObject } from "./guards"
-import { Func } from "./t"
+import { isArray, isFunction, isObject } from "../internal/_guards"
+import { Func } from "../internal/t"
 
 
-export type ChainingObject<A> = { 
-  chain: <B>(f: Func<A, ChainingObject<B>>) => ChainingObject<B> 
+export type ChainingObject<A> = {
+  chain: <B>(f: Func<A, ChainingObject<B>>) => ChainingObject<B>
 }
-export type Chain<A, X=unknown> 
+
+export type Chain<A>
   = A[]
   | ChainingObject<A>
-  | Func<X, A>
+  | Func<unknown, A>
 
 export const isChainingObject = <A>(x: any): x is ChainingObject<A> => isObject(x) && 'chain' in x && isFunction(x.chain)
 
@@ -24,9 +25,9 @@ export const isChainingObject = <A>(x: any): x is ChainingObject<A> => isObject(
 
 // implementation
 export function chain<A, B>(fn: Func<A, Chain<B>>): Func<Chain<A>, Chain<B>> {
-  return function(chn: Chain<A>): Chain<B> {
-    if (Array.isArray(chn)) {
-      const containerLs = chn as A[]
+  return function (chn: Chain<A>) {
+    if (isArray<A>(chn)) {
+      const containerLs = chn
       return containerLs.flatMap(fn as Func<A, B[]>)
     }
 
